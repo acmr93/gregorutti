@@ -12,16 +12,16 @@ class Proyecto extends Model
     protected $table = 'categorias';
     protected $fillable = [
 							'orden',
-							'nombre',
-							'img',
+							'titulo',
+                            'img',
+							'texto',
                             'slug'
 						];
 
-    public $translatable = ['nombre'];
+    public $translatable = ['titulo',];
 
-						
-    public function contenido()
-    {
-        return $this->hasMany('App\Contenido','proyecto_id');
-    }
+	protected $casts = [
+        'img' => 'array',
+        'texto' => 'array',
+    ];
 }

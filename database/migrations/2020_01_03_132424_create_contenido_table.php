@@ -21,9 +21,7 @@ class CreateContenidoTable extends Migration
             $table->json('subtitulo')->nullable();
             $table->json('texto1')->nullable();
             $table->json('texto2')->nullable();
-            $table->string('img')->nullable();
-            $table->integer('proyecto_id')->unsigned()->nullable();
-            $table->foreign('proyecto_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->json('img')->nullable();
             $table->string('slug')->unique()->nullable();
             $table->timestamps();
         });

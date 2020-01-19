@@ -18,11 +18,10 @@ class Servicio extends Model
 							'icon',
 						];
 
-    public $translatable = ['titulo'];
+    public $translatable = ['titulo','texto'];
 
     protected $casts = [
         'img' => 'array',
-        'texto' => 'array',
         'icon' => 'array',
     ];
 }

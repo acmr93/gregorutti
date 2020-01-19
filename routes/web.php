@@ -79,26 +79,25 @@ Route::prefix('adm')->middleware('auth')->group(function () {
 	});
 
 	Route::prefix('productos')->group(function () {
-		Route::get('',['uses' => 'ProductosController@index','as' => 'productos.index']);
-		Route::get('form/{id?}',['uses' => 'ProductosController@form','as' => 'productos.form']);
-		Route::post('',['uses' => 'ProductosController@store','as' => 'productos.store']);
-		Route::get('{id}',['uses' => 'ProductosController@ProductosIDshow','as' => 'productos.show']);
-		Route::post('images/reposition/{id}', [ 'uses' => 'ProductosController@reposition', 'as' => 'images.reposition' ]);
-		Route::post('images/delete/{id_item}/{id_img}', [ 'uses' => 'ProductosController@delete', 'as' => 'images.delete' ]);
+		Route::get('',['uses' => 'ContenidoController@ContenidoProductos','as' => 'productos.contenido']);
+		Route::get('form/{id?}',['uses' => 'ContenidoController@ContenidoProductosID','as' => 'productos.contenido.id']);
+		Route::get('{id}',['uses' => 'ContenidoController@ProductosIDshow','as' => 'productos.show']);
+		Route::post('images/reposition/{id}', [ 'uses' => 'ContenidoController@reposition', 'as' => 'images.reposition' ]);
+		Route::delete('images/delete/{id_item}/{id_img}', [ 'uses' => 'ContenidoController@delete', 'as' => 'images.delete' ]);
 	});
 
 	Route::prefix('proyectos')->group(function () {
 		Route::get('',['uses' => 'ProyectosController@index','as' => 'proyectos.index']);
-		Route::get('form/{id?}',['uses' => 'ProyectosController@form','as' => 'proyectos.form']);
+		Route::get('form/{id?}',['uses' => 'ProyectosController@FormProyectosID','as' => 'proyectos.form.id']);
 		Route::post('',['uses' => 'ProyectosController@store','as' => 'proyectos.store']);
-		Route::get('{id}',['uses' => 'ProyectosController@ProductosIDshow','as' => 'proyectos.show']);
+		Route::delete('{id}',['uses' => 'ProyectosController@destroy','as' => 'proyectos.destroy']);
 	});
 
 	Route::get('texto-extra',['uses' => 'InfoController@textoshow','as' => 'texto.index']);
 	Route::post('texto-extra',['uses' => 'InfoController@textosave','as' => 'texto.save']);
 
-	Route::get('sectores',['uses' => 'ContenidoController@Sectores','as' => 'sectores.index']);
-	Route::get('sectores/form/{id?}',['uses' => 'ContenidoController@SectoresID','as' => 'sectores.form']);
+	Route::get('sectores/contenido',['uses' => 'ContenidoController@ContenidoSectores','as' => 'sectores.contenido']);
+		Route::get('sectores/contenido/form/{id?}',['uses' => 'ContenidoController@ContenidoSectoresID','as' => 'sectores.contenido.id']);
 
 	Route::post('file',['uses' => 'MultimediaController@store','as' => 'file.store']);
 	Route::delete('file/{id}',['uses' => 'MultimediaController@destroy','as' => 'file.destroy']);

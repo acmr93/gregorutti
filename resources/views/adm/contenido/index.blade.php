@@ -18,7 +18,11 @@
 		  <!-- general form elements -->
 		  <div class="card card-primary">
 		    <div class="card-header">
+		    	@if ($seccion == 'productos')
+		      	<h3 class="card-title">{{ucfirst($seccion)}}</h3>	    	
+		    	@else
 		      	<h3 class="card-title">Contenido en {{ucfirst($seccion)}}</h3>	    	
+		    	@endif
 		    </div>
 		    <!-- /.card-header -->
 		    <!-- form start -->
@@ -60,8 +64,12 @@
 								</td>
 								<td>
 									{!! Form::open(['method' => 'DELETE', 'route' => ['contenido.destroy', $contenido->id], 'class' => 'form-horizontal']) !!}
+								@if ($seccion == 'productos')
+									<a href="{{route('productos.show',$contenido->id)}}" class="btn btn-xs btn-info"><i class="fas fa-eye"></i></a>
+								@else
 									<a href="{{route(''.$seccion.'.contenido.id',$contenido->id)}}" class="btn btn-xs btn-info"><i class="fas fa-edit"></i></a>
-										<button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('¿Esta seguro de eliminar?')"><i class="fas fa-trash"></i></button>
+								@endif
+									<button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('¿Esta seguro de eliminar?')"><i class="fas fa-trash"></i></button>
 									{!! Form::close() !!}	                      	
 								</td>
 							</tr>                  		

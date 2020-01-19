@@ -189,7 +189,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('productos.index')}}" class="nav-link {{ request()->is('adm/productos') ? 'active' : '' }}">
+            <a href="{{route('productos.contenido')}}" class="nav-link {{ request()->is('adm/productos') ? 'active' : '' }}">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Productos
@@ -213,7 +213,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('sectores.index')}}" class="nav-link {{ request()->is('adm/sectores') ? 'active' : '' }}">
+            <a href="{{route('sectores.contenido')}}" class="nav-link {{ request()->is('adm/sectores') ? 'active' : '' }}">
               <i class="nav-icon fas fa-layer-group"></i>
               <p>
                 Sectores

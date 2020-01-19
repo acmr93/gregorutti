@@ -15,7 +15,7 @@ class EmpresaTableSeeder extends Seeder
     public function run()
     {
         Empresa::create([
-            'nombre' => 'Nombre de la Empresa'
+            'nombre' => 'WGregorutti'
         ]);    
     }
 }

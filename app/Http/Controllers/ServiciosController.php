@@ -28,15 +28,17 @@ class ServiciosController extends Controller
 
             $this->validate($request, 
             [
-                "archivo"  => "nullable",
-                "archivo.*"  => "nullable|mimes:jpeg,png",
+                "imagen"  => "nullable",
+                "imagen.*"  => "nullable|mimes:jpeg,png",
+                "icono"  => "nullable",
+                "icono.*"  => "nullable|mimes:jpeg,png",
             ]);
 
             $servicio = Servicio::findOrFail($request->id);
             $servicio->fill($request->all());
             $servicio->save();
 
-            if ($request->hasfile('archivo')){
+            if ($request->hasfile('imagen')){
                 if ($servicio->img != null) {
                 	foreach ($servicio->img as $key => $value) {
                 		$filename= $value['nombre'];
@@ -44,12 +46,12 @@ class ServiciosController extends Controller
                     	File::delete($file);
                 	}
                 }
-                foreach ($request->archivo as $archivo) {
-                    $nombre_original = $archivo->getClientOriginalName();
+                foreach ($request->imagen as $imagen) {
+                    $nombre_original = $imagen->getClientOriginalName();
                     $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
                     $nombre_interno= time().'.'.$extension;
                     $path_file = public_path().'/loaded/servicios/';
-                    $archivo->move($path_file,$nombre_interno);
+                    $imagen->move($path_file,$nombre_interno);
                     $imagenes[] =   [
                                         "url" => 'public/loaded/servicios/',
                                         "nombre" => $nombre_interno,
@@ -60,85 +62,27 @@ class ServiciosController extends Controller
                 $servicio->save();
             }
 
-            $i=0;
-
-
-            if ($request->id_sub){
-				$actual_texto = $servicio->texto;
-
-				//para eliminar
-				foreach ($actual_texto as $key => $value) {
-					$del[] =  $value['id'];
-				}
-
-				$result = array_diff($del, $request->id_sub);
-
-				foreach ($result as $key) {
-					$filter = array_filter($actual_texto, function ($var) use ($key) {
-		                return ($var['id'] == $key);
-		            });
-					$filter=array_values($filter);
-					if ($filter[0]['img'] != null) {
-            			$filename= $filter[0]['img'];
-                    	$file = public_path().'/loaded/servicios/'.$filename;
-                    	File::delete($file);
-            		}
-				} 
-
-				//para modificar
-				foreach ($request->id_sub as $id_sub => $value1) {
-					foreach ($actual_texto as $key => $value) {
-						if ($value1 == $value['id']) {
-							$i++;
-							$nombre_interno = $value['img'];
-							$sub_ser = $value['subservicio'];
-		                	if (!empty($request->file_subservicio[$id_sub])) {
-		                		if (isset($value['img'])) {
-		                			$filename= $value['img'];
-			                    	$file = public_path().'/loaded/servicios/'.$filename;
-			                    	File::delete($file);
-		                		}
-			                    $nombre_original = $request->file_subservicio[$id_sub]->getClientOriginalName();
-			                    $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
-			                    $nombre_interno= $i.''.time().'.'.$extension;
-			                    $path_file = public_path().'/loaded/servicios/';
-			                    $request->file_subservicio[$id_sub]->move($path_file,$nombre_interno);
-		                	}
-		                	if (!empty($request->sub_servicio[$id_sub]))
-		                		$sub_ser = $request->sub_servicio[$id_sub];
-
-				            $mod_text[] =   [
-                                        "id" => $i,
-                                        "subservicio" => $sub_ser,
-                                        "img" => $nombre_interno
-                                    ];
-				        }
-					}
-				}
-
-				$servicio->texto = $mod_text;
-                $servicio->save();     			
-            }
-
-            if ($request->sub_new){
-            	
-                foreach ($request->sub_new as $subservicio => $value) {
-                	$i++;
-                	$nombre_interno = null;
-                	if (!empty($request->file_subnew[$subservicio])) {
-	                    $nombre_original = $request->file_subnew[$subservicio]->getClientOriginalName();
-	                    $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
-	                    $nombre_interno= $i.''.time().'.'.$extension;
-	                    $path_file = public_path().'/loaded/servicios/';
-	                    $request->file_subnew[$subservicio]->move($path_file,$nombre_interno);
-                	}
-                    $texto[] =   [
-                                        "id" => $i,
-                                        "subservicio" => $value,
-                                        "img" => $nombre_interno
+            if ($request->hasfile('icono')){
+                if ($servicio->icon != null) {
+                    foreach ($servicio->icon as $key => $value) {
+                        $filename= $value['nombre'];
+                        $file = public_path().'/loaded/servicios/'.$filename;
+                        File::delete($file);
+                    }
+                }
+                foreach ($request->icono as $icono) {
+                    $nombre_original = $icono->getClientOriginalName();
+                    $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
+                    $nombre_interno= time().'.'.$extension;
+                    $path_file = public_path().'/loaded/servicios/';
+                    $icono->move($path_file,$nombre_interno);
+                    $iconos[] =   [
+                                        "url" => 'public/loaded/servicios/',
+                                        "nombre" => $nombre_interno,
+                                        "extension" => $extension,
                                     ];
                 }
-                $servicio->texto = array_merge($servicio->texto,$texto);
+                $servicio->icon = $iconos;
                 $servicio->save();
             }
 
@@ -148,20 +92,22 @@ class ServiciosController extends Controller
         else{
             $this->validate($request, 
             [
-                "archivo"    => "required",
-                "archivo.*"  => "required|mimes:jpeg,png",
+                "imagen"    => "required",
+                "imagen.*"  => "required|mimes:jpeg,png",
+                "icono"    => "nullable",
+                "icono.*"  => "nullable|mimes:jpeg,png",
             ]);
 
             $servicio= new Servicio($request->all());
             $servicio->save();
 
-            if ($request->hasfile('archivo')){
-                foreach ($request->archivo as $archivo) {
-                    $nombre_original = $archivo->getClientOriginalName();
+            if ($request->hasfile('imagen')){
+                foreach ($request->imagen as $imagen) {
+                    $nombre_original = $imagen->getClientOriginalName();
                     $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
                     $nombre_interno= time().'.'.$extension;
                     $path_file = public_path().'/loaded/servicios/';
-                    $archivo->move($path_file,$nombre_interno);
+                    $imagen->move($path_file,$nombre_interno);
                     $imagenes[] =   [
                                         "url" => 'public/loaded/servicios/',
                                         "nombre" => $nombre_interno,
@@ -172,25 +118,20 @@ class ServiciosController extends Controller
                 $servicio->save();
             }
 
-            if ($request->sub_new){
-            	$i=0;
-                foreach ($request->sub_new as $subservicio => $value) {
-                	$i++;
-                	$nombre_interno = null;
-                	if (!empty($request->file_subnew[$subservicio])) {
-	                    $nombre_original = $request->file_subnew[$subservicio]->getClientOriginalName();
-	                    $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
-	                    $nombre_interno= $i.''.time().'.'.$extension;
-	                    $path_file = public_path().'/loaded/servicios/';
-	                    $request->file_subnew[$subservicio]->move($path_file,$nombre_interno);
-                	}
-                    $texto[] =   [
-                                        "id" => $i,
-                                        "subservicio" => $value,
-                                        "img" => $nombre_interno
+            if ($request->hasfile('icono')){
+                foreach ($request->icono as $icono) {
+                    $nombre_original = $icono->getClientOriginalName();
+                    $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
+                    $nombre_interno= time().'.'.$extension;
+                    $path_file = public_path().'/loaded/servicios/';
+                    $icono->move($path_file,$nombre_interno);
+                    $iconos[] =   [
+                                        "url" => 'public/loaded/servicios/',
+                                        "nombre" => $nombre_interno,
+                                        "extension" => $extension,
                                     ];
                 }
-                $servicio->texto = $texto;
+                $servicio->icon = $iconos;
                 $servicio->save();
             }
 
@@ -212,12 +153,12 @@ class ServiciosController extends Controller
         	}
         }
 
-        if ($servicio->texto != null) {
-        	foreach ($servicio->texto as $key => $value) {
-        		$filename= $value['img'];
-            	$file = public_path().'/loaded/servicios/'.$filename;
-            	File::delete($file);
-        	}
+        if ($servicio->icon != null) {
+            foreach ($servicio->icon as $key => $value) {
+                $filename= $value['nombre'];
+                $file = public_path().'/loaded/servicios/'.$filename;
+                File::delete($file);
+            }
         }
 
         $servicio->delete();

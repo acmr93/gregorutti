@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| Servicios')
+@section('title', $empresa->nombre.'| Proyectos')
 
 @section('css')
 <style type="text/css">
@@ -18,7 +18,7 @@
 		  <!-- general form elements -->
 		  <div class="card card-primary">
 		    <div class="card-header">
-		      	<h3 class="card-title">Servicios</h3>	    	
+		      	<h3 class="card-title">Proyectos</h3>	    	
 		    </div>
 		    <!-- /.card-header -->
 		    <!-- form start -->
@@ -29,45 +29,44 @@
                     <tr>
                       <th>Orden</th>
                       <th>Título</th>
-                      <th>Descripción</th>
-                      <th>Imagenes</th>
+                      <th>Subtexto</th>
+                      <th>Imagen</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	@if($servicios->count() > 0)
-    	              	@foreach ($servicios as $servicio)
+                  	@if($proyectos->count() > 0)
+    	              	@foreach ($proyectos as $proyecto)
 							<tr>
-								<td>{{$servicio->orden}}</td>
+								<td>{{$proyecto->orden}}</td>
 								<td>
 									@foreach (LaravelLocalization::getLocalesOrder() as $key => $lang)
-										{{$servicio->getTranslation('titulo', $key)}}
+										{{$proyecto->getTranslation('titulo', $key)}}
 									@endforeach
 								</td>
 								<td>
-									@foreach (LaravelLocalization::getLocalesOrder() as $key => $lang)
-										{{$servicio->getTranslation('texto', $key)}}
-									@endforeach
+									@if ($proyecto->texto != null)
+										@foreach ($proyecto->texto as $key => $value)
+										<div class="col-auto">
+											<img id="imagen" src="{{asset('loaded/proyectos/'.$value['img'])}}" class="control">
+											{{$value['subproyecto']}}
+										</div>
+										@endforeach										
+									@endif
+									
 								</td>
 								<td>
-									@if ($servicio->img != null)
-										@foreach ($servicio->img as $key => $value)
-											<a href="{{asset('loaded/servicios/'.$value['nombre'])}} " target="_blank">
-												<img id="imagen" src="{{asset('loaded/servicios/'.$value['nombre'])}}" class="control">
+									@if ($proyecto->img != null)
+										@foreach ($proyecto->img as $key => $value)
+											<a href="{{asset('loaded/proyectos/'.$value['nombre'])}} " target="_blank">
+												<img id="imagen" src="{{asset('loaded/proyectos/'.$value['nombre'])}}" class="control">
 											</a>	
 										@endforeach										
 									@endif
-									@if ($servicio->icon != null)
-										@foreach ($servicio->icon as $key => $value)
-											<a href="{{asset('loaded/servicios/'.$value['nombre'])}} " target="_blank">
-												<img id="imagen" src="{{asset('loaded/servicios/'.$value['nombre'])}}" class="control">
-											</a>	
-										@endforeach										
-									@endif
 								</td>
 								<td>
-									{!! Form::open(['method' => 'DELETE', 'route' => ['servicios.destroy', $servicio->id], 'class' => 'form-horizontal']) !!}
-									<a href="{{route('servicios.form.id',$servicio->id)}}" class="btn btn-xs btn-info"><i class="fas fa-edit"></i></a>
+									{!! Form::open(['method' => 'DELETE', 'route' => ['proyectos.destroy', $proyecto->id], 'class' => 'form-horizontal']) !!}
+									<a href="{{route('proyectos.form.id',$proyecto->id)}}" class="btn btn-xs btn-info"><i class="fas fa-edit"></i></a>
 										<button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('¿Esta seguro de eliminar?')"><i class="fas fa-trash"></i></button>
 									{!! Form::close() !!}	                      	
 								</td>
@@ -85,7 +84,7 @@
 			</div>
 		    <!-- /.card-body -->
 		    <div class="card-footer">
-		        <a class="btn btn-info float-right" href="{{route('servicios.form.id')}}"><i class="fas fa-plus"></i></a>
+		        <a class="btn btn-info float-right" href="{{route('proyectos.form.id')}}"><i class="fas fa-plus"></i></a>
 		    </div>
 		  </div>
 		  <!-- /.card -->			

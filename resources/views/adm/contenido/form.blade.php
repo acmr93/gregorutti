@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| '.ucfirst($seccion).' - Contenido')
+@section('title', $empresa->nombre.'| '. ($seccion == 'productos'?ucfirst($seccion):ucfirst($seccion).' - Contenido') )
 
 @section('css')
 	<!-- summernote -->
@@ -21,7 +21,11 @@
 		  <!-- general form elements -->
 		  <div class="card card-primary">
 		    <div class="card-header">
+		      	@if ($seccion == 'productos')
+		      	<h3 class="card-title">{{ucfirst($seccion)}}</h3>	    	
+		    	@else
 		      	<h3 class="card-title">Contenido en {{ucfirst($seccion)}}</h3>	    	
+		    	@endif   	
 		    </div>
 		    <!-- /.card-header -->
 		    <!-- form start -->
@@ -43,7 +47,7 @@
 			          	<div class="form-group{{ $errors->has('titulo[$key]') ? ' has-error' : '' }}">
 				    	    {!! Form::label('titulo['.$key.']', 'Titulo:') !!}
 				    	    {!! Form::text('titulo['.$key.']', (isset($contenido) ? $contenido->getTranslation('titulo', $key) : null) , ['class' => 'form-control']) !!}
-				    	    <small class="text-danger">{{ $errors->first('titulo['.$key.']') }}</small>
+			                    <small class="text-danger">{{ $errors->first('titulo.*') }}</small>
 				    	</div>
 						<div class="form-group{{ $errors->has('texto1[$key]') ? ' has-error' : '' }}">
 				    	    {!! Form::label('texto1['.$key.']', 'Texto:') !!}
@@ -53,29 +57,48 @@
 				        @endforeach
 		    		</div>
 		    		<div class="col-md-6 col-sm-12">
-				    	<div class="form-group">
+		                @if ($seccion == 'productos')
+					        <div class="form-group">
+			                    <label for="file-input" class="{{$errors->has('archivo') || $errors->has('archivo.*') ? 'text-danger' : ''}}">Imagenes:</label>
+			                    <div class="input-group">
+			                      <div class="custom-file">
+			                        <input type="file" class="custom-file-input {{$errors->has('archivo') || $errors->has('archivo.*') ? 'is-invalid' : ''}}" id="file-input" name="archivo[]" multiple {{(isset($contenido)?:' required ')}}>
+			                        <label class="custom-file-label" for="file-input">{{(isset($contenido)?'':'Seleccione')}}</label>
+			                      </div>
+			                    </div>
+			                    <small class="text-muted">Puede seleccionar una o mas imagenes.</small><br>
+			                    <small class="text-danger">{{ $errors->first('archivo.*') }}</small>
+			                </div>
+							<div id="preview">	
+								<img id="imagen" src="{{asset('images/thumbnails/388x326.png')}}" class="control">
+							</div>
+		                @else
+		                <div class="form-group">
 		                    <label for="exampleInputFile" class="{{$errors->has('archivo') ? 'text-danger' : ''}}">Imagen para el Contenido</label>
 		                    <div class="input-group">
 		                      <div class="custom-file">
-		                        <input type="file" class="custom-file-input {{$errors->has('archivo') ? 'is-invalid' : ''}}" id="exampleInputFile" name="archivo[]" {{(isset($contenido)?'':'required')}}>
+		                        <input type="file" class="custom-file-input {{$errors->has('archivo') ? 'is-invalid' : ''}}" id="exampleInputFile" name="archivo[]" {{(isset($contenido)?'':'required')}} {{($seccion == 'productos'?'multiple':'')}}>
 		                        <label class="custom-file-label" for="exampleInputFile">{{(isset($contenido)?$contenido->url_img:'Seleccione imagen')}}</label>
 		                      </div>
 		                    </div>
 		                </div>	
 		                <small class="text-danger">{{ $errors->first('archivo') }}</small>
 
-	                	@if(isset($contenido) && $contenido->img != null)
-							@foreach ($contenido->img as $key => $value)
-								<img id="imagen" src="{{asset('loaded/contenido/'.$value['nombre'])}}" class="control">
-							@endforeach
-						@else
-							<img id="imagen" src="{{asset('images/thumbnails/1128x898.png')}}" class="control" alt="Responsive image">
-						@endif
+		                	@if(isset($contenido) && $contenido->img != null)
+								@foreach ($contenido->img as $key => $value)
+									<img id="imagen" src="{{asset('loaded/contenido/'.$value['nombre'])}}" class="control">
+								@endforeach
+							@else
+								<img id="imagen" src="{{asset('images/thumbnails/1128x898.png')}}" class="control" alt="Responsive image">
+							@endif
+
+		                @endif
+	                	
 		                		    		
 		    		</div>
 		    	</div>
 			</div>
-		    <!-- /.card-body -->>
+		    <!-- /.card-body -->
 		  </div>
 		  <!-- /.card -->			
 		</div>
@@ -110,21 +133,50 @@ $('.textarea').summernote({
 	  ]
 })
 
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    
-    reader.onload = function(e) {
-      $('#imagen').attr('src', e.target.result);
-    }
-    
-    reader.readAsDataURL(input.files[0]);
-  }
-}
+@if ($seccion == 'productos')
+	function previewImages() {
+	const myNode = document.getElementById("preview");
+	myNode.innerHTML = '';
+	  var preview = document.querySelector('#preview');
+	  if (this.files) {
+	    [].forEach.call(this.files, readAndPreview);
+	  }
+	  function readAndPreview(file) {
+	    var reader = new FileReader();
+	    reader.addEventListener("load", function() {
+	      var image = new Image();
+	      image.className = "control";
+	      image.alt = 'Responsive image';
+	      image.style = 'margin: 10px;';
+	      image.title  = file.name;
+	      image.src    = this.result;
+	      preview.appendChild(image);
+	    });
+	    reader.readAsDataURL(file);
+	  }
+	}
+	document.querySelector('#file-input').addEventListener("change", previewImages);	
+@else
+	function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    
+	    reader.onload = function(e) {
+	      $('#imagen').attr('src', e.target.result);
+	    }
+	    
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
 
-$("#exampleInputFile").change(function() {
-  readURL(this);
-});
+	$("#exampleInputFile").change(function() {
+	  readURL(this);
+	});	
+@endif
+
+
+
+
 
 </script>
 

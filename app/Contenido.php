@@ -19,7 +19,6 @@ class Contenido extends Model
 							'texto2',
 							'img',
 							'slug',
-							'proyecto_id'
 						];
 
     public $translatable = ['titulo','subtitulo', 'texto1', 'texto2'];
@@ -28,8 +27,4 @@ class Contenido extends Model
         'img' => 'array',
     ];
 
-    public function proyecto()
-    {
-    	return $this->belongsTo('App\Proyecto','proyecto_id');
-    }
 }
