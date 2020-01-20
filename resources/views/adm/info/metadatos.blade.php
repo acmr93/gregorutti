@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| Empresa - Metadatos')
+@section('title', $empresa_->nombre.' | Empresa - Metadatos')
 
 @section('css')
 

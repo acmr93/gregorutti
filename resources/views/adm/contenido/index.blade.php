@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| '.ucfirst($seccion).' - Contenido')
+@section('title', $empresa->nombre.' | '.ucfirst($seccion).' - Contenido')
 
 @section('css')
 <style type="text/css">

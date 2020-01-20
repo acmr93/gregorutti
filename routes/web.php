@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('publica.layouts.master');
 });
 
-Route::get('/', 'PublicaController@home')->name('home');
+// Route::get('/', 'PublicaController@home')->name('home');
 Route::get('/empresa', 'PublicaController@empresa')->name('empresa');
 Route::get('/servicios', 'PublicaController@servicios')->name('servicios');
 Route::get('/productos', 'PublicaController@productos')->name('productos');
@@ -55,9 +55,12 @@ Route::prefix('adm')->middleware('auth')->group(function () {
 	Route::prefix('home')->group(function () {
 		Route::get('slider',['uses' => 'MultimediaController@SliderHome','as' => 'home.slider']);
 		Route::get('slider/form/{id?}',['uses' => 'MultimediaController@SliderHomeID','as' => 'home.slider.id']);
-		//un formulario y un post para decir cuales son los proyectos destacados, servicios y fondo de una seccion.
+		Route::get('contenido-extra',['uses' => 'InfoController@ContenidoHomeShow','as' => 'home.contenido']);
+		Route::post('contenido-extra',['uses' => 'InfoController@ContenidoHomeSave','as' => 'home.contenido.save']);
 	});
 
+	Route::get('texto-extra',['uses' => 'InfoController@TextoSeccionesshow','as' => 'texto.index']);
+	Route::post('texto-extra',['uses' => 'InfoController@TextoSeccionessave','as' => 'texto.save']);
 
 	Route::prefix('empresa')->group(function () {
 		Route::get('slider',['uses' => 'MultimediaController@SliderEmpresa','as' => 'empresa.slider']);
@@ -76,6 +79,8 @@ Route::prefix('adm')->middleware('auth')->group(function () {
 		Route::get('form/{id?}',['uses' => 'ServiciosController@FormServiciosID','as' => 'servicios.form.id']);
 		Route::post('',['uses' => 'ServiciosController@store','as' => 'servicios.store']);
 		Route::delete('{id}',['uses' => 'ServiciosController@destroy','as' => 'servicios.destroy']);
+		Route::get('/getServicios', ['as' =>'servicios.getServicios' , 'uses' => 'ServiciosController@getServicios']);
+
 	});
 
 	Route::prefix('productos')->group(function () {
@@ -93,11 +98,8 @@ Route::prefix('adm')->middleware('auth')->group(function () {
 		Route::delete('{id}',['uses' => 'ProyectosController@destroy','as' => 'proyectos.destroy']);
 	});
 
-	Route::get('texto-extra',['uses' => 'InfoController@textoshow','as' => 'texto.index']);
-	Route::post('texto-extra',['uses' => 'InfoController@textosave','as' => 'texto.save']);
-
 	Route::get('sectores/contenido',['uses' => 'ContenidoController@ContenidoSectores','as' => 'sectores.contenido']);
-		Route::get('sectores/contenido/form/{id?}',['uses' => 'ContenidoController@ContenidoSectoresID','as' => 'sectores.contenido.id']);
+	Route::get('sectores/contenido/form/{id?}',['uses' => 'ContenidoController@ContenidoSectoresID','as' => 'sectores.contenido.id']);
 
 	Route::post('file',['uses' => 'MultimediaController@store','as' => 'file.store']);
 	Route::delete('file/{id}',['uses' => 'MultimediaController@destroy','as' => 'file.destroy']);

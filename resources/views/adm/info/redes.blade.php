@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| Empresa - Redes Sociales')
+@section('title', $empresa_->nombre.' | Empresa - Redes Sociales')
 
 @section('css')
 

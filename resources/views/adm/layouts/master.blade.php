@@ -76,7 +76,7 @@
           </li> 
           <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
-              <i class="fas fa-building mr-2"></i> {{$empresa->nombre}}
+              <i class="fas fa-building mr-2"></i> {{$empresa_->nombre}}
             </a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
               <li>
@@ -144,7 +144,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('adm/home/extra*') ? 'active' : '' }}">
+                <a href="{{route('home.contenido')}}" class="nav-link {{ request()->is('adm/home/contenido-extra*') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Contenido extra</p>
                 </a>

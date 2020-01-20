@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| Empresa - Terminos y condiciones')
+@section('title', $empresa_->nombre.' | Empresa - Terminos y condiciones')
 
 @section('css')
 	<!-- summernote -->

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', $empresa->nombre.'| Perfil')
+@section('title', $empresa_->nombre.' | Perfil')
 
 @section('css')
 

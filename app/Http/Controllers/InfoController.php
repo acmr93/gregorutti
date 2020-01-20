@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Empresa;
 use App\Metadato;
 use App\Multimedia;
+use App\Servicio;
+use App\Proyecto;
 use Yajra\Datatables\Datatables;
 use Laracasts\Flash\Flash;
 use File;
@@ -235,6 +237,94 @@ class InfoController extends Controller
                 'message' => 'Ha ocurrido un error al tratar de guardar los datos.'
                 ], 500);
         }
+    }
+
+    public function ContenidoHomeShow()
+    {
+        $empresa = Empresa::find(1);
+        $proyectos = Proyecto::orderby('titulo', 'asc')->pluck('titulo','id');
+        $servicios = Servicio::where('icon','!=', null)->orderby('titulo', 'asc')->pluck('titulo','id');
+        
+        // dd($empresa);
+        return view('adm.contenido_extra.contenido_home')->with('empresa',$empresa)->with('proyectos',$proyectos)->with('servicios',$servicios);
+    }
+
+    public function ContenidoHomeSave(Request $request)
+    {
+        $this->validate($request, 
+        [
+            "archivo"  => "nullable|mimes:jpeg,png",
+        ]);
+
+        $empresa = Empresa::find(1);
+
+        $contenido_home= array();
+
+        if ($request->destacados)
+            $contenido_home += [ "destacados" => $request->destacados ];
+        
+        if ($request->servicios)
+            $contenido_home += [ "servicios" => $request->servicios ];
+
+        if ($request->hasfile('archivo')){
+
+            if ($empresa->contenido_home['img_presupuesto'] != null) {
+                $file = public_path().'/loaded/home/'.$empresa->contenido_home['img_presupuesto'];
+                File::delete($file);
+            }
+
+            $extension = $request->file('archivo')->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            $path_file = public_path().'/loaded/home/';
+
+            $request->file('archivo')->move($path_file,$file_name);
+            $contenido_home += [ "img_presupuesto" => $file_name ];
+
+        }
+        else{
+            if ($empresa->contenido_home['img_presupuesto'] != null)
+            $contenido_home += [ "img_presupuesto" => $empresa->contenido_home['img_presupuesto']];    
+        }
+
+        $empresa->contenido_home = $contenido_home;
+
+        $empresa->save();
+
+        Flash::success("Se ha actualizado el Contenido Extra en Home!!");
+
+        return redirect()->route('home.contenido');
+    }
+
+    public function TextoSeccionesshow()
+    {
+        $empresa = Empresa::where('id',1)->select('texto_secciones')->first();
+
+        // dd($empresa);
+        return view('adm.contenido_extra.texto_general')->with('empresa',$empresa);
+    }
+
+    public function TextoSeccionessave(Request $request)
+    {
+        $empresa = Empresa::find(1);
+
+        $texto_secciones= array();
+
+        if ($request->servicios)
+            $texto_secciones += [ "servicios" => $request->servicios ];
+        if ($request->productos)
+            $texto_secciones += [ "productos" => $request->productos ];
+        if ($request->clientes)
+            $texto_secciones += [ "clientes" => $request->clientes ];
+        if ($request->contacto)
+            $texto_secciones += [ "contacto" => $request->contacto ];
+
+        $empresa->texto_secciones = $texto_secciones;
+
+        $empresa->save();
+
+        Flash::success("Se ha actualizado el Contenido Extra en Home!!");
+
+        return redirect()->route('texto.index');
     }
 }
            

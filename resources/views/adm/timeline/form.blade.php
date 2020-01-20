@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', 'ADMIN|EMPRESA')
+@section('title', $empresa_->nombre.' | Empresa - Timeline')
 
 @section('css')
 

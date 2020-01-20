@@ -73,7 +73,7 @@ class ServiciosController extends Controller
                 foreach ($request->icono as $icono) {
                     $nombre_original = $icono->getClientOriginalName();
                     $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
-                    $nombre_interno= time().'.'.$extension;
+                    $nombre_interno= 'icon'.time().'.'.$extension;
                     $path_file = public_path().'/loaded/servicios/';
                     $icono->move($path_file,$nombre_interno);
                     $iconos[] =   [
@@ -122,7 +122,7 @@ class ServiciosController extends Controller
                 foreach ($request->icono as $icono) {
                     $nombre_original = $icono->getClientOriginalName();
                     $extension = pathinfo($nombre_original, PATHINFO_EXTENSION); // jpg
-                    $nombre_interno= time().'.'.$extension;
+                    $nombre_interno= 'icon'.time().'.'.$extension;
                     $path_file = public_path().'/loaded/servicios/';
                     $icono->move($path_file,$nombre_interno);
                     $iconos[] =   [
@@ -165,5 +165,12 @@ class ServiciosController extends Controller
 
         Flash::error("Se ha eliminado el servicio!!");         
         return redirect()->route('servicios.index');
+    }
+
+    public function getServicios()
+    {
+        $servicios = Servicio::where('icon','!=', null)->orderby('titulo', 'asc')->select('id', 'titulo', 'icon')->get();
+
+        return response()->json($servicios); 
     }
 }

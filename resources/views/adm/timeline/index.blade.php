@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| Linea de Tiempo')
+@section('title', $empresa_->nombre.' | Linea de Tiempo')
 
 @section('css')
   <link rel="stylesheet" href="{{asset('css/timeline.css')}}">

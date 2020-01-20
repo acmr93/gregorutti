@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| '. ($seccion == 'productos'?ucfirst($seccion):ucfirst($seccion).' - Contenido') )
+@section('title', $empresa_->nombre.' | '. ($seccion == 'productos'?ucfirst($seccion):ucfirst($seccion).' - Contenido') )
 
 @section('css')
 	<!-- summernote -->

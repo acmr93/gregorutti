@@ -1,6 +1,6 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.'| ADMIN')
+@section('title', $empresa_->nombre.' | ADMIN')
 
 @section('css')
 
