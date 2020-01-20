@@ -4,8 +4,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-{{--   <meta name="keywords" content="{{optional($metadato)->keywords}}">
-  <meta name="description" content="{{optional($metadato)->description}}"> --}}
+  <meta name="keywords" content="{{optional($metadato)->keywords}}">
+  <meta name="description" content="{{optional($metadato)->description}}">
   <title>@yield('title', $empresa_->nombre)</title>
 
   <link rel="icon" href="{{asset('images/logos/favicon.png')}}">
@@ -24,9 +24,9 @@
 
 <body class="hold-transition sidebar-mini">
   @include('publica.layouts.header')
-{{--   <div class="min-height" >
+  <div class="min-height" >
     @yield('contenido')
-  </div> --}}
+  </div>
   @include('publica.layouts.footer')
   
 <!-- jQuery -->

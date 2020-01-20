@@ -45,6 +45,25 @@
 	    		</div>
 	    		<div class="col-md-6 col-sm-12">
 			    	<div class="form-group">
+	                    <label for="exampleInputFile2" class="{{$errors->has('archivo2') ? 'text-danger' : ''}}" >Imagen de Medio:</label>
+	                    <div class="input-group">
+	                      <div class="custom-file">
+	                        <input type="file" class="custom-file-input {{$errors->has('archivo2') ? 'is-invalid' : ''}}" id="exampleInputFile2" name="archivo2" {{($empresa->contenido_home != null?'':' required ')}}>
+	                        <label class="custom-file-label" for="exampleInputFile2">{{(isset($empresa) && $empresa->contenido_home != null?$empresa->contenido_home['suelta']:'Seleccione imagen')}}</label>
+	                      </div>
+	                    </div>
+	                    <small class="text-danger">{{ $errors->first('archivo2') }}</small>
+
+	                </div>		               
+                	@if(isset($empresa) && $empresa->contenido_home != null)
+						<img id="imagen2" src="{{asset('loaded/home/'.$empresa->contenido_home['suelta'])}}" class="control" alt="Responsive image">
+					@else
+						<img id="imagen2" src="{{asset('images/thumbnails/1366x652.png')}}" class="control" alt="Responsive image">
+					@endif
+	             		
+	    		</div>
+	    		<div class="col-md-6 col-sm-12">
+			    	<div class="form-group">
 	                    <label for="exampleInputFile" class="{{$errors->has('archivo') ? 'text-danger' : ''}}" >Imagen de Fondo a mostrar en recuadro de presupuesto:</label>
 	                    <div class="input-group">
 	                      <div class="custom-file">
@@ -62,6 +81,7 @@
 					@endif
 	             		
 	    		</div>
+
 	    	</div>
 		</div>
 	    <!-- /.card-body -->
@@ -127,6 +147,22 @@ function readURL(input) {
 
 $("#exampleInputFile").change(function() {
   readURL(this);
+});
+
+function readURL2(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#imagen2').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#exampleInputFile2").change(function() {
+  readURL2(this);
 });
 
 </script>

@@ -286,6 +286,26 @@ class InfoController extends Controller
             $contenido_home += [ "img_presupuesto" => $empresa->contenido_home['img_presupuesto']];    
         }
 
+        if ($request->hasfile('archivo2')){
+
+            if ($empresa->contenido_home['suelta'] != null) {
+                $file = public_path().'/loaded/home/'.$empresa->contenido_home['suelta'];
+                File::delete($file);
+            }
+
+            $extension = $request->file('archivo2')->getClientOriginalExtension();
+            $file_name = time().'.'.$extension;
+            $path_file = public_path().'/loaded/home/';
+
+            $request->file('archivo2')->move($path_file,$file_name);
+            $contenido_home += [ "suelta" => $file_name ];
+
+        }
+        else{
+            if ($empresa->contenido_home['suelta'] != null)
+            $contenido_home += [ "suelta" => $empresa->contenido_home['suelta']];    
+        }
+
         $empresa->contenido_home = $contenido_home;
 
         $empresa->save();

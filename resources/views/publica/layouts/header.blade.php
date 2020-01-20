@@ -1,14 +1,14 @@
-<header>
-    <nav id="navbarfirst" class="navbar navbar-light navbar-expand-md">
+<header >
+    <nav id="navbarfirst" class="navbar navbar-light navbar-expand-md py-0">
         <div class="container">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 ">
                 <ul class="navbar-nav mr-auto">
                 </ul>
             </div>
-            <div class="mx-auto order-0">
-                <a class="navbar-brand order-first order-md-0 mx-4" href="{{route('home')}}" >
-                        <img class="mx-auto d-block" src="{{asset('images/logos/header.png')}}" height="">
-                    </a>
+            <div class="mx-auto order-0 d-flex align-items-center">
+                <a class="navbar-brand order-first order-md-0 mx-4 py-1" href="{{route('home')}}" >
+                    <img class=" mx-auto d-block" src="{{asset('images/logos/header.png')}}" >
+                </a>
                 <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="navbar-toggler-icon"></span>
                 </button>
@@ -23,7 +23,7 @@
         </div>
     </nav>
 
-    <nav  id="navbar" class="navbar navbar-light navbar-expand-md pt-0" style="margin-bottom: -5px">
+    <nav  id="navbar" class="navbar navbar-light navbar-expand-md ">
         <div class="container">
             <div class="collapse navbar-collapse w-100">
                 <ul class="nav navbar-nav w-100 order-2 justify-content-between">

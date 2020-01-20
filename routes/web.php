@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('publica.layouts.master');
-});
+// Route::get('/', function () {
+//     return view('publica.layouts.master');
+// });
 
-// Route::get('/', 'PublicaController@home')->name('home');
+Route::get('/', 'PublicaController@home')->name('home');
 Route::get('/empresa', 'PublicaController@empresa')->name('empresa');
 Route::get('/servicios', 'PublicaController@servicios')->name('servicios');
 Route::get('/productos', 'PublicaController@productos')->name('productos');

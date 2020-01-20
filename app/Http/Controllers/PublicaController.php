@@ -18,11 +18,13 @@ class PublicaController extends Controller
     	$seccion = 'home';
         $metadato = Metadato::where('seccion', $seccion)->first();
 		$slider = Multimedia::where([['seccion', $seccion],['tipo', 'slider']])->orderBy('orden')->get();
-        $features = Servicio::orderBy('orden')->get();
-        $contenido = Contenido::where('seccion',$seccion)->orderBy('orden')->get();
+        // $features = Servicio::orderBy('orden')->get();
+        // $contenido = Contenido::where('seccion',$seccion)->orderBy('orden')->get();
         $clientes = Cliente::orderBy('orden')->get();
 
-        return view('publica.home',compact('seccion','metadato','slider','features','contenido','clientes'));
+        return view('publica.home',compact('seccion','metadato','slider','clientes'
+            // ,'features','contenido','clientes'
+        ));
     }
 
     public function empresa(){
