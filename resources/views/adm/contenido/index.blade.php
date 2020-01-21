@@ -1,8 +1,9 @@
 @extends('adm.layouts.master')
 
-@section('title', $empresa->nombre.' | '.ucfirst($seccion).' - Contenido')
+@section('title', $empresa_->nombre.' | '.ucfirst($seccion).' - Contenido')
 
 @section('css')
+  <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
 <style type="text/css">
 .control {
     max-width:100%;
@@ -74,12 +75,6 @@
 								</td>
 							</tr>                  		
 	                  	@endforeach
-	               	@else
-						<tr>
-							<td colspan=" 5" class="text-muted text-center">
-								Ningún dato disponible en esta tabla
-							</td>
-						</tr>
                   	@endif
                   </tbody>
                 </table>
@@ -96,8 +91,22 @@
 
 @section('js')
 
+<!-- DataTables -->
+<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
 <script type="text/javascript">
 
+$(".table").DataTable({
+  processing: true,
+  order: [[ 0, "desc" ]],
+  scrollY:  "500px",
+  scrollCollapse: true,
+  language: leng,
+  "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "TODOS"]],
+  "columnDefs": [
+    { "orderable": false, "targets": [3,4] }
+  ]
+});
 
 </script>
 

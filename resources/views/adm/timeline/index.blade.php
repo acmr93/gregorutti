@@ -3,6 +3,7 @@
 @section('title', $empresa_->nombre.' | Linea de Tiempo')
 
 @section('css')
+  <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
   <link rel="stylesheet" href="{{asset('css/timeline.css')}}">
 @endsection
 
@@ -75,13 +76,7 @@
                       </td>
                     </tr>                       
                     @endforeach
-                @else
-                    <tr>
-                        <td colspan="5" class="text-muted text-center">
-                            Ningún dato disponible en esta tabla
-                        </td>
-                    </tr>
-                @endif
+                    @endif
               </tbody>
             </table>
         </div>
@@ -98,6 +93,24 @@
 
 @section('js')
     <script src="{{asset('js/timeline.js')}}"></script>
+    <!-- DataTables -->
+<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+<script type="text/javascript">
+
+$(".table").DataTable({
+  processing: true,
+  order: [[ 0, "desc" ]],
+  scrollY:  "500px",
+  scrollCollapse: true,
+  language: leng,
+  "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "TODOS"]],
+  "columnDefs": [
+    { "orderable": false, "targets": 2 }
+  ]
+});
+
+</script>
 
 @endsection
 

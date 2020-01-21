@@ -242,7 +242,7 @@ class InfoController extends Controller
     public function ContenidoHomeShow()
     {
         $empresa = Empresa::find(1);
-        $proyectos = Proyecto::orderby('titulo', 'asc')->pluck('titulo','id');
+        $proyectos = Proyecto::orderby('titulo->es', 'ASC')->pluck('titulo','id');
         $servicios = Servicio::where('icon','!=', null)->orderby('titulo', 'asc')->pluck('titulo','id');
         
         // dd($empresa);

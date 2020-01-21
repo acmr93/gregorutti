@@ -12,7 +12,7 @@ class ProyectosController extends Controller
 {
 	public function index()
     {   
-        $proyectos = Proyecto::all();
+        $proyectos = Proyecto::orderby('titulo->es', 'ASC')->get();
         return view('adm.proyectos.index',compact('proyectos'));
     }
 
@@ -152,7 +152,11 @@ class ProyectosController extends Controller
                                         "img" => $nombre_interno
                                     ];
                 }
-                $proyecto->texto = array_merge($proyecto->texto,$texto);
+                if ($proyecto->texto != null) 
+                    $proyecto->texto = array_merge($proyecto->texto,$texto);
+                else
+                    $proyecto->texto = $texto;
+                
                 $proyecto->save();
             }
 

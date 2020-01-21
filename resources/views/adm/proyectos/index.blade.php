@@ -3,6 +3,8 @@
 @section('title', $empresa_->nombre.' | Proyectos')
 
 @section('css')
+<!-- DataTables -->
+  <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
 <style type="text/css">
 .control {
     max-width:100%;
@@ -48,12 +50,10 @@
 									@if ($proyecto->texto != null)
 										@foreach ($proyecto->texto as $key => $value)
 										<div class="col-auto">
-											<img id="imagen" src="{{asset('loaded/proyectos/'.$value['img'])}}" class="control">
 											{{$value['subproyecto']}}
 										</div>
 										@endforeach										
 									@endif
-									
 								</td>
 								<td>
 									@if ($proyecto->img != null)
@@ -72,32 +72,35 @@
 								</td>
 							</tr>                  		
 	                  	@endforeach
-	               	@else
-						<tr>
-							<td colspan=" 5" class="text-muted text-center">
-								Ningún dato disponible en esta tabla
-							</td>
-						</tr>
                   	@endif
                   </tbody>
                 </table>
 			</div>
-		    <!-- /.card-body -->
-		    <div class="card-footer">
-		        <a class="btn btn-info float-right" href="{{route('proyectos.form.id')}}"><i class="fas fa-plus"></i></a>
-		    </div>
 		  </div>
 		  <!-- /.card -->			
 		</div>
 	</div>
 <!-- /.row -->
-
+<a class="btn btn-info flotante" href="{{route('proyectos.form.id')}}"><i class="fas fa-plus"></i></a>
 @endsection
 
 @section('js')
-
+<!-- DataTables -->
+<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
 <script type="text/javascript">
 
+$(".table").DataTable({
+  processing: true,
+  order: [[ 0, "desc" ]],
+  scrollY:  "500px",
+  scrollCollapse: true,
+  language: leng,
+  "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "TODOS"]],
+  "columnDefs": [
+    { "orderable": false, "targets": [3,4] }
+  ]
+});
 
 </script>
 

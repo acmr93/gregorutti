@@ -1,0 +1,89 @@
+.suelta{
+	margin-top: 70px;
+	margin-bottom: 120px;
+}
+
+.clientes{
+	margin-top: 120px;
+	margin-bottom: 125px;
+}
+
+.clientes:before {
+  border-bottom: 1px solid #999999;
+  content: '';
+  display: block;
+  width: 30%;
+  margin-left: 35%;
+}
+
+.clientes:after {
+  border-bottom: 1px solid #999999;
+  content: '';
+  display: block;
+  width: 30%;
+  margin-left: 35%;
+}
+
+.clientes .slick-prev, .slick-next{
+	height: auto!important;
+	width: auto!important;
+}
+
+.clientes .slick-next::before {
+    background: url('../images/der(1).png') no-repeat;
+    content: "";
+    display: block;
+    height: 40px;
+    width: 20px;
+}
+.clientes .slick-prev:before {
+    background: url('../images/iz(1).png') no-repeat;
+    content: "";
+    display: block;
+    height: 40px;
+    width: 20px;
+}
+
+
+.destacados{
+	margin-bottom: 100px;
+}
+
+.destacados .titulo{
+	font-size: 35px;
+	font-weight: 300;
+}
+
+.destacados .items{
+	margin-top: -25px;
+	background-color: #F9F9F9;
+	padding: 60px 0;
+}
+
+.destacados .btn-outline-light{
+	position: absolute;
+	bottom: 22px;
+	right: 22px;
+	border-width: 2px;
+}
+
+.servicios{
+	margin-top: 100px;
+}
+
+.servicios .items{
+	background-color: #F9F9F9;
+	padding: 45px 0;
+}
+
+.servicios .por-servicio{
+	-ms-flex-preferred-size: 0;
+	flex-basis: 0;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	max-width: 100%;
+}
+
+.servicios h4{
+	font-weight: 300;
+}

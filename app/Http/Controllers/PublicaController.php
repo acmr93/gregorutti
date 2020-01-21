@@ -9,6 +9,7 @@ use App\Servicio;
 use App\Cliente;
 use App\Contenido;
 use App\Empresa;
+use App\Proyecto;
 use Mail;
 use Laracasts\Flash\Flash;
 
@@ -18,11 +19,16 @@ class PublicaController extends Controller
     	$seccion = 'home';
         $metadato = Metadato::where('seccion', $seccion)->first();
 		$slider = Multimedia::where([['seccion', $seccion],['tipo', 'slider']])->orderBy('orden')->get();
+        $proyectos = Proyecto::whereIn('id', Empresa::find(1)->contenido_home['destacados'])->select('titulo', 'img', 'slug')->get();
+        $servicios = Servicio::whereIn('id', Empresa::find(1)->contenido_home['servicios'])->select('titulo', 'icon')->get();
+
+            // dd($proyectos);
+
         // $features = Servicio::orderBy('orden')->get();
         // $contenido = Contenido::where('seccion',$seccion)->orderBy('orden')->get();
         $clientes = Cliente::orderBy('orden')->get();
 
-        return view('publica.home',compact('seccion','metadato','slider','clientes'
+        return view('publica.home',compact('seccion','metadato','slider','clientes','proyectos','servicios'
             // ,'features','contenido','clientes'
         ));
     }
