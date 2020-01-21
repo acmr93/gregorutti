@@ -56,7 +56,8 @@
 }
 
 .row.box-item img {
-
+  margin-top: -70px;
+  margin-bottom: -70px;
 }
 
 .row.box-item .texto-contenido {

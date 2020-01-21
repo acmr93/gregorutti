@@ -68,11 +68,13 @@
                 <div class="fila">
                     <div class="container">
                         <div class="row box-item">
-                            <div class="col-12 col-md-6 texto-contenido px-0">
+                            <div class="col-12 col-md-6 texto-contenido px-0 pb-sm-5 pb-md-0">
                                 <h2 class="box-contenido-titulo">{!! $contenido->titulo !!}</h2>
                                 <div class="subtexto-contenido">{!! $contenido->texto1 !!}</div>
                             </div>
-                            <div class="col-12 col-md-6 text-center"><img  src="{{asset('loaded/contenido/'.$contenido->img[0]['nombre'])}}" class="img-fluid  mx-auto"></div>
+                            <div class="col-12 col-md-6 text-center">
+                                <img  src="{{asset('loaded/contenido/'.$contenido->img[0]['nombre'])}}" class="img-fluid shadow  mx-auto">
+                            </div>
                         </div>                        
                     </div>
                 </div>
@@ -81,8 +83,8 @@
                 <div class="fila">
                     <div class="container">
                         <div class="row box-item">
-                            <div class="col-12 col-md-6 text-center"><img  src="{{asset('loaded/contenido/'.$contenido->img[0]['nombre'])}}" class="img-fluid mx-auto"></div>
-                            <div class="col-12 col-md-6 texto-contenido px-0">
+                            <div class="col-12 col-md-6 text-center"><img  src="{{asset('loaded/contenido/'.$contenido->img[0]['nombre'])}}" class="img-fluid shadow mx-auto"></div>
+                            <div class="col-12 col-md-6 texto-contenido px-0 pt-sm-5 pt-md-0">
                                 <h2 class="box-contenido-titulo">{!! $contenido->titulo !!}</h2>
                                 <div class="subtexto-contenido">{!! $contenido->texto1 !!}</div>
                             </div>

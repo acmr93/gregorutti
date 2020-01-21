@@ -23,7 +23,6 @@ class PublicaController extends Controller
         $proyectos = Proyecto::whereIn('id', Empresa::find(1)->contenido_home['destacados'])->select('titulo', 'img', 'slug')->get();
         $servicios = Servicio::whereIn('id', Empresa::find(1)->contenido_home['servicios'])->select('titulo', 'icon')->get();
         $clientes = Cliente::orderBy('orden')->get();
-
         return view('publica.home',compact('seccion','metadato','slider','clientes','proyectos','servicios'));
     }
 
