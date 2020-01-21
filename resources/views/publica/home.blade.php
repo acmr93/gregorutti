@@ -50,7 +50,7 @@
                 @foreach ($proyectos as $proyecto)
                   <div class="card border-0 rounded-0">
                     <img src="{{asset('loaded/proyectos/'.$proyecto->img[0]['nombre'])}}" class="card-img-top border-0 rounded-0" alt="...">
-                    <a href="{{route('proyecto', $proyecto->slug)}}" class="btn btn-outline-light rounded-pill px-4">Ingresar</a>
+                    <a href="{{route('proyecto', $proyecto->slug)}}" class="btn btn-outline-light rounded-pill px-4 boton">Ingresar</a>
                   </div>
                 @endforeach 
             @endif            
@@ -75,6 +75,19 @@
                         </div>
                     @endforeach 
                 @endif 
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="presupuesto" style="background-image: url(&quot;{{asset('loaded/home/'.$empresa_->contenido_home['img_presupuesto'])}}&quot;)">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <h3><b>Pedí tu presupuesto a profesionales</b></h3>
+                <h2>FÁCIL, RÁPIDO Y SIN CARGO</h2>
+                <h4>Ingresá al formulario para enviar una solicitud de presupuesto sin cargo.</h4>
+                <a href="{{route('presupuesto')}}" class="btn btn-outline-light rounded-pill px-4 boton mt-2">Ingresar</a>
             </div>
         </div>
     </div>

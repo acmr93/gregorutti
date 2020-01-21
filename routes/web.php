@@ -118,4 +118,3 @@ Auth::routes([
   'verify' => false, // Email Verification Routes...
 ]);
 
-Route::get('/home', 'HomeController@index')->name('home');

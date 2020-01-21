@@ -130,6 +130,7 @@ $('.textarea').summernote({
 	    ['color', ['forecolor']],
 	    ['para', ['ul', 'ol', 'paragraph']],
 	    ['insert', ['link', 'table', 'hr']],
+		['view', [ 'codeview','undo', 'redo']],
 	  ]
 })
 

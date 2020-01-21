@@ -5,7 +5,7 @@
 
 #navbar .nav-link {
   color: #5B5A5A;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -20,7 +20,7 @@
 
 #navbarfirst .nav-link {
   color: #5B5A5A;
-  font-size: 14px;
+  font-size: 16px;
 }
 #navbarfirst .nav-link:hover {
   color: #8B3135;

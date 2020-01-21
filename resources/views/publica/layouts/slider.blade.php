@@ -5,8 +5,8 @@
         	@if ($slider->count() > 0)
         		@foreach ($slider as $img)
 	                <div class="carousel-item @if($conteo==0) active @endif">
-	                    <div class="jumbotron pulse animated carousel-hero d-flex align-items-end" style="min-height: 565px;background-image: url(&quot;{{asset('loaded/'.$seccion.'/'.$img->nombre)}}&quot;)">
-	                        <div class="container carousel-hero-container ">
+	                    <div class="jumbotron pulse animated carousel-hero d-flex {{$seccion=='home'?'align-items-end':'align-items-center'}} " style="min-height: 565px;background-image: url(&quot;{{asset('loaded/'.$seccion.'/'.$img->nombre)}}&quot;)">
+	                        <div class="container carousel-hero-container" @if($seccion=='empresa') style="font-size: 45px; font-weight: 200" @endif>
                                 {!!$img->texto1!!}
 	                        </div>
 	                    </div>
@@ -18,8 +18,8 @@
                     <div class="jumbotron pulse animated carousel-hero" style="background-image: url(&quot;{{asset('images/thumbnails/1365x518.png')}}&quot;)">
                         <div class="container">
                             <div class="container carousel-hero-container">
-                                    <spam class="hero-text">TEXTO 1</spam>
-                                    <h1 class="hero-title">TEXTO 2</h1>
+                                <spam class="hero-text">TEXTO 1</spam>
+                                <h1 class="hero-title">TEXTO 2</h1>
                             </div>
                         </div>
                     </div>

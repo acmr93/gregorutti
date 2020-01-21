@@ -33,6 +33,14 @@ class MultimediaController extends Controller
         return view('adm.multimedia.index',compact('items','seccion','tipo'));
     }
 
+    public function SliderEmpresaID($id = null)
+    {   
+        $item = Multimedia::find($id);
+        $seccion = 'empresa';
+        $tipo = 'slider';
+        return view('adm.multimedia.form',compact('item','seccion','tipo'));
+    }
+
     public function store(Request $request)
     {   
         if (isset($request->id)) {

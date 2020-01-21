@@ -10,6 +10,7 @@ use App\Cliente;
 use App\Contenido;
 use App\Empresa;
 use App\Proyecto;
+use App\Historia;
 use Mail;
 use Laracasts\Flash\Flash;
 
@@ -21,25 +22,19 @@ class PublicaController extends Controller
 		$slider = Multimedia::where([['seccion', $seccion],['tipo', 'slider']])->orderBy('orden')->get();
         $proyectos = Proyecto::whereIn('id', Empresa::find(1)->contenido_home['destacados'])->select('titulo', 'img', 'slug')->get();
         $servicios = Servicio::whereIn('id', Empresa::find(1)->contenido_home['servicios'])->select('titulo', 'icon')->get();
-
-            // dd($proyectos);
-
-        // $features = Servicio::orderBy('orden')->get();
-        // $contenido = Contenido::where('seccion',$seccion)->orderBy('orden')->get();
         $clientes = Cliente::orderBy('orden')->get();
 
-        return view('publica.home',compact('seccion','metadato','slider','clientes','proyectos','servicios'
-            // ,'features','contenido','clientes'
-        ));
+        return view('publica.home',compact('seccion','metadato','slider','clientes','proyectos','servicios'));
     }
 
     public function empresa(){
     	$seccion = 'empresa';
         $metadato = Metadato::where('seccion', $seccion)->first();
-		$banner = Multimedia::where([['seccion', $seccion],['tipo', 'banner']])->latest()->first();;
+        $slider = Multimedia::where([['seccion', $seccion],['tipo', 'slider']])->orderBy('orden')->get();
         $contenido = Contenido::where('seccion',$seccion)->orderBy('orden')->get();
-
-        return view('publica.empresa',compact('seccion','metadato','banner','contenido'));
+        $timeline = Historia::orderBy('epoca')->get();
+        
+        return view('publica.empresa',compact('seccion','metadato','slider','contenido','timeline'));
     }
 
     public function servicios(){

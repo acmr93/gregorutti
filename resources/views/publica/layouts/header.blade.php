@@ -16,7 +16,7 @@
             <div class="navbar-collapse collapse w-100 order-3 d-none d-md-block">
                 <ul class="nav navbar-nav w-100 order-3  justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> <i class="fa fa-calculator fa-lg pr-2"></i>SOLICITUD DE PRESUPUESTO</a>
+                        <a class="nav-link" href="{{route('presupuesto')}}"> <i class="fa fa-calculator fa-lg pr-2"></i>SOLICITUD DE PRESUPUESTO</a>
                     </li>
                 </ul>
             </div>

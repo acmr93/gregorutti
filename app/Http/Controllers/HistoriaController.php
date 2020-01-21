@@ -35,6 +35,9 @@ class HistoriaController extends Controller
 
         else{
             $timeline= new Historia($request->all());
+            if (empty($request->texto)) {
+                $timeline->texto = ' ';
+            }
             $timeline->save();
             Flash::success("Se ha creado el timeline!!");         
         } 
