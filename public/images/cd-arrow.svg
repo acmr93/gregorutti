@@ -1,1 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="32px" viewBox="0 0 16 32"><g  transform="translate(0, 0)"><polygon fill="#7b9d6f" points="6,13.4 4.6,12 8.6,8 4.6,4 6,2.6 11.4,8 "/></g><g  transform="translate(0, 16)"><polygon fill="#dfdfdf" points="6,13.4 4.6,12 8.6,8 4.6,4 6,2.6 11.4,8 "/></g></svg>
+<svg width="16" height="32" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <polygon id="svg_2" points="6,13.4 4.6,12 8.6,8 4.6,4 6,2.6 11.4,8 " fill="#8b3135"/>
+  </g>
+  <g id="svg_3">
+   <polygon id="svg_4" points="6,29.399999618530273 4.599999904632568,28 8.600000381469727,24 4.599999904632568,20 6,18.59999990463257 11.399999618530273,24 " fill="#dfdfdf"/>
+  </g>
+ </g>
+</svg>

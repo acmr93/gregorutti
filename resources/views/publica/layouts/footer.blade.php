@@ -2,7 +2,22 @@
     <div class="container" >
         <div class="row ">
             <div class="col-12 col-md-4 my-5 ">
-                <img class="img-fluid d-block mx-auto" src="{{asset('images/logos/footer.png')}}">
+                <img class="img-fluid d-block mx-auto" src="{{asset('images/logos/footer.png')}}"><br>
+                
+                <h5 class=" pl-2 titulo-footer">Siguenos en:</h5>
+                <div class="pl-2">
+                    @if ($empresa_->redes_sociales != null)
+                        @foreach($empresa_->redes_sociales as $red => $value)
+                            @if($value['tipo'] == 'facebook')
+                                <a href="{{$value['enlace']}}"> <i class="fa fa-facebook fa-2x pr-3" style="color: #5B5A5A"></i></a>
+                            @elseif($value['tipo'] == 'instagram')
+                                <a href="{{$value['enlace']}}"> <i class="fa fa-instagram fa-2x pr-3" style="color: #5B5A5A"></i></a>
+                            @elseif($value['tipo'] == 'twitter')
+                                <a href="{{$value['enlace']}}"> <i class="fa fa-twitter fa-2x pr-3" style="color: #5B5A5A"></i></a>
+                            @endif 
+                        @endforeach                                 
+                    @endif    
+                </div>
             </div>
             <div class="col-12 col-md-4 my-5 ">
                 <div class="row">
@@ -32,7 +47,7 @@
                            </a>
                     </div>
                 </div>
-                <div class="row align-items-center">
+                <div class="row align-items-center justify-content-center">
                     <div class="col-2 text-center icon-footer"><i class="fa fa-phone"></i></div>
                     <div class="col-10">
                         @php $i = 0; @endphp

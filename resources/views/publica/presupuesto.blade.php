@@ -82,7 +82,7 @@
                         </div>
                     <div class="form-group">
                         {!! Form::label('file', 'Archivo Adjunto') !!}
-                        {!! Form::file('file', ['required' => 'required', 'class' => $errors->has('file') ? 'form-control is-invalid' : '']) !!}
+                        {!! Form::file('file', [ 'class' => $errors->has('file') ? 'form-control is-invalid' : '']) !!}
                         <small>Solo archivos .pdf (2MB máximo)</small>
                         <small class="text-danger">{{ $errors->first('file') }}</small>
                     </div>
