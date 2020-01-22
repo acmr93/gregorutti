@@ -63,6 +63,7 @@
 	                        <label class="custom-file-label" for="exampleInputFile">{{(isset($item)?$item->nombre:'Seleccione imagen')}}</label>
 	                      </div>
 	                    </div>
+	                    <small class="text-muted">Dimensiones recomendadas para diseño 1368 x 568</small>  
 	                    <small class="text-danger">{{ $errors->first('archivo') }}</small>
 
 	                </div>		               
@@ -73,7 +74,7 @@
 					</a>
 						
 					@else
-						<img id="imagen" src="{{asset('images/thumbnails/1366x652.png')}}" class="control" alt="Responsive image">
+						<img id="imagen" src="{{asset('images/thumbnails/thumbnail.png')}}" class="control" alt="Responsive image">
 					@endif
 	             		
 	    		</div>

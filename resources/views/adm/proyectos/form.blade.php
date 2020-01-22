@@ -55,6 +55,7 @@
 		                      </div>
 		                    </div>
 		                </div>	
+	                    <small class="text-muted">Dimensiones recomendadas para diseño 386x440</small>  
 		                <strong id="error-exampleInputFile" class="text-danger">{{ $errors->first('archivo') }}</strong></br>
 
 	                	@if(isset($proyecto) && $proyecto->img != null)
@@ -62,7 +63,7 @@
 								<img id="images" src="{{asset('loaded/proyectos/'.$value['nombre'])}}" class="control exampleInputFile">
 							@endforeach
 						@else
-							<img id="images" src="{{asset('images/thumbnails/85x85.png')}}" class="control exampleInputFile">
+							<img id="images" src="{{asset('images/thumbnails/thumbnail.png')}}" class="control" alt="Responsive image">
 						@endif
 		                		    		
 		    		</div>
@@ -127,7 +128,7 @@
 	    var newRow = $('<tr>'+
 	    '<td class="align-middle">{!! Form::textarea('sub_new[]', null , ['id' => 'sub_new[]','class' => 'form-control', 'placeholder' => 'Subproyecto', 'required' => 'required', 'rows' => 2]) !!}</td>'+
 	    '<td class="align-middle">{!! Form::textarea('texto_new[]', null , ['id' => 'texto_new[]','class' => 'form-control', 'placeholder' => 'Texto', 'required' => 'required', 'rows' => 2]) !!}</td>'+
-	    '<td><input id="new_file'+file_count+'" class="archivo " required name="file_subnew[]" type="file"><strong id="error-new_file'+file_count+'" class="text-danger"></strong><img src="{{asset('images/thumbnails/85x85.png')}}" class="control new_file'+file_count+'"></td>'+
+	    '<td><input id="new_file'+file_count+'" class="archivo " required name="file_subnew[]" type="file"><br><small class="text-muted">Dimensiones recomendadas para diseño 428x285</small><br><strong id="error-new_file'+file_count+'" class="text-danger"></strong><img src="{{asset('images/thumbnails/thumbnail.png')}}" class="control new_file'+file_count+'"></td>'+
 	    '<td class="align-middle"><button type="button" class="del btn btn-sm btn-danger"><i class="fas fa-minus"></i></button></td></tr>');
 	    $("#subproyectos").append(newRow);
 	    	function readURL(input) {

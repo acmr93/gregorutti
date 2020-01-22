@@ -31,7 +31,7 @@
 								<img src="{{asset('images/logos/'.$header->nombre)}}" class="control header_file" alt="Responsive image">
 							</a>
 						@else
-							<img src="#" class="control header_file" alt="Responsive image">
+							<img src="{{asset('images/thumbnails/thumbnail.png')}}" class="control header_file" alt="Responsive image">
 						@endif
 						</br>
 						{!! Form::hidden('tipo_file[]', 'header') !!}
@@ -47,7 +47,7 @@
 								<img src="{{asset('images/logos/'.$footer->nombre)}}" class="control footer_file" alt="Responsive image">
 							</a>
 						@else
-							<img src="#" class="control footer_file" alt="Responsive image">
+							<img src="{{asset('images/thumbnails/thumbnail.png')}}" class="control footer_file" alt="Responsive image">
 						@endif
 						</br>
 						{!! Form::hidden('tipo_file[]', 'footer') !!}
@@ -63,7 +63,7 @@
 								<img src="{{asset('images/logos/'.$favicon->nombre)}}" class="control favicon" alt="Responsive image">
 							</a>
 						@else
-							<img src="#" class="control favicon" alt="Responsive image">
+							<img src="{{asset('images/thumbnails/thumbnail.png')}}" class="control favicon" alt="Responsive image">
 						@endif
 						</br>
 						{!! Form::hidden('tipo_file[]', 'favicon') !!}

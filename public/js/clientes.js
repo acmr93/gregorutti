@@ -128,7 +128,7 @@ $('#guardar_cliente').click(function(){
 $('#modal-cliente').on('hidden.bs.modal', function (e){ 
   $('#form-cliente')[0].reset();
   $('#id').val('');
-  $('#img_cliente').attr('src',''+public+'/images/thumbnails/366x442.png')
+  $('#img_cliente').attr('src',''+public+'/images/thumbnails/thumbnail.png')
   removeStyleMetadato();
   tabla_clientes.ajax.reload();
 });

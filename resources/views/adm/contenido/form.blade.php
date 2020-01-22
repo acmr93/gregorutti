@@ -67,10 +67,11 @@
 			                      </div>
 			                    </div>
 			                    <small class="text-muted">Puede seleccionar una o mas imagenes.</small><br>
+			                    <small class="text-muted">Dimensiones recomendadas para diseño 792x336.</small> 
 			                    <small class="text-danger">{{ $errors->first('archivo.*') }}</small>
 			                </div>
 							<div id="preview">	
-								<img id="imagen" src="{{asset('images/thumbnails/388x326.png')}}" class="control">
+								<img id="imagen" src="{{asset('images/thumbnails/thumbnail.png')}}" class="control" alt="Responsive image">
 							</div>
 		                @else
 		                <div class="form-group">
@@ -82,6 +83,14 @@
 		                      </div>
 		                    </div>
 		                </div>	
+
+		                @if ($seccion == 'empresa')
+							<small class="text-muted">Dimensiones recomendadas para diseño <b>si la imagen es la primera a mostrar en la sección</b> 543x418. </small><br>
+							<small class="text-muted">Dimensiones recomendadas para el resto 423x481. </small> 				
+						@elseif($seccion == 'sectores')
+							<small class="text-muted">Dimensiones recomendadas para diseño 387x440.</small> 			
+						@endif
+
 		                <small class="text-danger">{{ $errors->first('archivo') }}</small>
 
 		                	@if(isset($contenido) && $contenido->img != null)
@@ -89,12 +98,9 @@
 									<img id="imagen" src="{{asset('loaded/contenido/'.$value['nombre'])}}" class="control">
 								@endforeach
 							@else
-								<img id="imagen" src="{{asset('images/thumbnails/1128x898.png')}}" class="control" alt="Responsive image">
+								<img id="imagen" src="{{asset('images/thumbnails/thumbnail.png')}}" class="control" alt="Responsive image">
 							@endif
-
-		                @endif
-	                	
-		                		    		
+						@endif
 		    		</div>
 		    	</div>
 			</div>

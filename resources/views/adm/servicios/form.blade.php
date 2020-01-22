@@ -70,6 +70,7 @@
 		                      </div>
 		                    </div>
 		                </div>	
+	                    <small class="text-muted">Dimensiones recomendadas para diseño 367x440</small>  
 		                <strong id="error-exampleInputFile" class="text-danger">{{ $errors->first('imagen') }}</strong></br>
 
 	                	@if(isset($servicio) && $servicio->img != null)
@@ -77,7 +78,7 @@
 								<img id="images" src="{{asset('loaded/servicios/'.$value['nombre'])}}" class="control exampleInputFile">
 							@endforeach
 						@else
-							<img id="images" src="{{asset('images/thumbnails/1128x898.png')}}" class="control exampleInputFile">
+							<img id="imagen" src="{{asset('images/thumbnails/thumbnail.png')}}" class="control" alt="Responsive image">
 						@endif
 		    		</div>
 		    		<div class="col-12 col-md-6">
@@ -90,6 +91,7 @@
 		                      </div>
 		                    </div>
 		                </div>	
+	                    <small class="text-muted">Dimensiones recomendadas para diseño 100x100</small>  
 		                <strong id="error-iconofile" class="text-danger">{{ $errors->first('icono') }}</strong></br>
 
 	                	@if(isset($servicio) && $servicio->icon != null)
@@ -97,7 +99,7 @@
 								<img id="images" src="{{asset('loaded/servicios/'.$value['nombre'])}}" class="control iconofile">
 							@endforeach
 						@else
-							<img id="images" src="{{asset('images/thumbnails/1128x898.png')}}" class="control iconofile">
+							<img id="imagen" src="{{asset('images/thumbnails/thumbnail.png')}}" class="control" alt="Responsive image">
 						@endif
 		    		</div>
 		    	</div>

@@ -58,7 +58,7 @@
                 	@if(isset($empresa) && $empresa->contenido_home != null)
 						<img id="imagen2" src="{{asset('loaded/home/'.$empresa->contenido_home['suelta'])}}" class="control" alt="Responsive image">
 					@else
-						<img id="imagen2" src="{{asset('images/thumbnails/1366x652.png')}}" class="control" alt="Responsive image">
+						<img id="imagen2" src="{{asset('images/thumbnails/thumbnail.png')}}" class="control" alt="Responsive image">
 					@endif
 	             		
 	    		</div>
@@ -77,7 +77,7 @@
                 	@if(isset($empresa) && $empresa->contenido_home != null)
 						<img id="imagen" src="{{asset('loaded/home/'.$empresa->contenido_home['img_presupuesto'])}}" class="control" alt="Responsive image">
 					@else
-						<img id="imagen" src="{{asset('images/thumbnails/1366x652.png')}}" class="control" alt="Responsive image">
+						<img id="imagen" src="{{asset('images/thumbnails/thumbnail.png')}}" class="control" alt="Responsive image">
 					@endif
 	             		
 	    		</div>
