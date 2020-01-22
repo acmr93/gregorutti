@@ -39,10 +39,9 @@ class PublicaController extends Controller
     public function servicios(){
     	$seccion = 'servicios';
         $metadato = Metadato::where('seccion', $seccion)->first();
-		$slider = Multimedia::where([['seccion', $seccion],['tipo', 'slider']])->orderBy('orden')->get();
-		$features = Servicio::orderBy('orden')->get();
+		$servicios = Servicio::orderBy('orden')->get();
 
-        return view('publica.servicios',compact('seccion','metadato','slider','features'));
+        return view('publica.servicios',compact('seccion','metadato','servicios'));
     }
 
     public function personal(){

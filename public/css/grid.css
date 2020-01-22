@@ -1,0 +1,18 @@
+.card-img-overlay{
+	background-color: #8B3135;
+ 	opacity: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transition: .5s ease;
+}
+
+.card-title {
+    position: absolute;
+    bottom: 0;
+    padding: 1.25rem;
+    z-index: 1000;
+}
+
+.card:hover .card-img-overlay {
+ 	opacity: 1;
+}
