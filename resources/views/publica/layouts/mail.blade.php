@@ -20,7 +20,7 @@
 </style>
 <body>
 <div>
-    <h2>{{ $site ?? 'RUCA' }}</h2>
+    <h2>{{ $site ?? 'WGregorutti' }}</h2>
     <h3>Contacto</h3>
     <p>Enviado desde la web </p>
     <br>

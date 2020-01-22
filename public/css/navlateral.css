@@ -1,0 +1,35 @@
+/* MENU DE NAVEGACION */
+
+.breadcrumb-item, .breadcrumb-item a{
+    color: #333333;
+    font-size: 14;
+    text-decoration: none;
+}
+
+.nav.flex-column:before {
+  border-bottom: 1px solid #999999;
+  content: '';
+  display: block;
+  width: 60%;
+}
+
+.nav.flex-column:after {
+  border-bottom: 1px solid #999999;
+  content: '';
+  display: block;
+  width: 60%;
+}
+
+.section .nav-link{
+    color: #000000;
+    font-weight: 600;
+    padding: .5rem 0
+}
+
+.section .nav-link:hover{
+    color: #8B3135;
+}
+
+.section .nav-link.active {
+    color: #8B3135;
+}

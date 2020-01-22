@@ -1,6 +1,6 @@
 @extends('publica.layouts.master')
 
-@section('title', $empresa_->nombre.' | Sectores')
+@section('title', $empresa_->nombre.' | '.ucfirst($seccion))
 
 @section('css')
     <link rel="stylesheet" href="{{asset('css/grid.css')}}">

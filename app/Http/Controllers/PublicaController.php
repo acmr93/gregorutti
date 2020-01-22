@@ -88,4 +88,38 @@ class PublicaController extends Controller
             return back()->with('status',"Correo enviado correctamente");
         }
     }
+
+    public function productos()
+    {   
+        $seccion = 'productos';
+        $metadato = Metadato::where('seccion', $seccion)->first();
+        $productos = Contenido::where('seccion',$seccion)->orderBy('orden')->get();
+        return view('publica.productos',compact('seccion','metadato','productos'));
+    }
+
+    public function producto($slug)
+    {   
+        $seccion = 'productos';
+        $metadato = Metadato::where('seccion', $seccion)->first();
+        $productos = Contenido::where('seccion',$seccion)->orderBy('orden')->get();
+        $producto = Contenido::where([['seccion', $seccion],['slug', $slug]])->first();
+        return view('publica.producto',compact('seccion','metadato','producto','productos'));
+    }
+
+    public function proyectos()
+    {   
+        $seccion = 'proyectos';
+        $metadato = Metadato::where('seccion', $seccion)->first();
+        $proyectos = Proyecto::orderBy('orden')->get();
+        return view('publica.proyectos',compact('seccion','metadato','proyectos'));
+    }
+
+    public function proyecto($slug)
+    {   
+        $seccion = 'proyectos';
+        $metadato = Metadato::where('seccion', $seccion)->first();
+        $proyectos = Proyecto::orderBy('orden')->get();
+        $proyecto = Proyecto::where('slug', $slug)->first();
+        return view('publica.proyecto',compact('seccion','metadato','proyecto','proyectos'));
+    }
 }

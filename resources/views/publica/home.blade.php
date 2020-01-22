@@ -70,7 +70,7 @@
                                 <img src="{{asset('loaded/servicios/'.$servicio->icon[0]['nombre'])}}" class="img-fluid border-0 rounded-0" alt="...">
                             </div>
                             <div class="col-12 d-flex align-items-end  justify-content-center pt-3">
-                                <h4>{{ucwords(strtolower($servicio->titulo))}}</h4>
+                                <h4>{{ucwords(mb_strtolower($servicio->titulo))}}</h4>
                             </div>
                         </div>
                     @endforeach 

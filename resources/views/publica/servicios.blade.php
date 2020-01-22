@@ -1,9 +1,8 @@
 @extends('publica.layouts.master')
 
-@section('title', $empresa_->nombre.' | Servicios')
+@section('title', $empresa_->nombre.' | '.ucfirst($seccion))
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('css/servicios.css')}}">
     <link rel="stylesheet" href="{{asset('css/grid.css')}}">
 @endsection
 

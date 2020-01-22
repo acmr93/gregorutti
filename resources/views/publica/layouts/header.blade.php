@@ -34,11 +34,11 @@
                         <a class="nav-link {{ Route::currentRouteName() == 'servicios' ? 'active' : '' }}" href="{{route('servicios')}}">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() == 'productos' ? 'active' : '' }}" href="{{route('productos')}}">Productos</a>
+                        <a class="nav-link {{ Route::currentRouteName() == 'productos' || Route::currentRouteName() == 'producto' ? 'active' : '' }}" href="{{route('productos')}}">Productos</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() == 'proyectos' ? 'active' : '' }}" href="{{route('proyectos')}}">Proyectos</a>
+                        <a class="nav-link {{ Route::currentRouteName() == 'proyectos' || Route::currentRouteName() == 'proyecto' ? 'active' : '' }}" href="{{route('proyectos')}}">Proyectos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Route::currentRouteName() == 'clientes' ? 'active' : '' }}" href="{{route('clientes')}}">Clientes</a>

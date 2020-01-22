@@ -18,7 +18,7 @@ class Proyecto extends Model
                             'slug'
 						];
 
-    public $translatable = ['titulo',];
+    public $translatable = ['titulo'];
 
 	protected $casts = [
         'img' => 'array',

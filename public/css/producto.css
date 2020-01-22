@@ -1,0 +1,12 @@
+.slider-nav .slick-slide {
+
+}
+
+.slider-nav .text-center.slick-slide.slick-current.slick-active, .slider-nav .text-center.slick-slide{
+    width: auto;
+}
+
+.slider-nav .slick-slide img{
+    overflow: hidden;
+    height: 50px
+}
