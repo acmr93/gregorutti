@@ -44,12 +44,12 @@ class PublicaController extends Controller
         return view('publica.servicios',compact('seccion','metadato','servicios'));
     }
 
-    public function personal(){
-        $seccion = 'personal especializado';
+    public function sectores(){
+        $seccion = 'sectores';
         $metadato = Metadato::where('seccion', $seccion)->first();
-        $contenido = Contenido::where('seccion','extra')->orderBy('orden')->get();
+        $sectores = Contenido::where('seccion','sectores')->orderBy('orden')->get();
 
-        return view('publica.personal',compact('seccion','metadato','contenido'));
+        return view('publica.sectores',compact('seccion','metadato','sectores'));
     }
 
     public function clientes(){

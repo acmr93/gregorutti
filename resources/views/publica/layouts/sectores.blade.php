@@ -15,13 +15,7 @@
             @if ($sectores->count() > 0)
                 @foreach ($sectores as $servicio)
                 <div class="col mb-3 px-2">
-                    <div class="card border-0 rounded-0 text-white">
-                        <img src="{{asset('loaded/sectores/'.$servicio->img[0]['nombre'])}}" class="card-img-top border-0 rounded-0" alt="...">
-                        <h5 class="card-title float-left">{{$servicio->titulo}}</h5>
-                        <div class="card-img-overlay text-center d-flex align-items-center">
-                            {!!$servicio->texto1!!}
-                        </div>
-                    </div>
+                    webo
                 </div>
                 @endforeach 
             @endif
