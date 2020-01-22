@@ -13,6 +13,9 @@ use App\Proyecto;
 use App\Historia;
 use Mail;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Validator;
+use App\Mail\PresupuestoMail;
+// use Illuminate\Support\Facades\Mail;
 
 class PublicaController extends Controller
 {
@@ -121,5 +124,66 @@ class PublicaController extends Controller
         $proyectos = Proyecto::orderBy('orden')->get();
         $proyecto = Proyecto::where('slug', $slug)->first();
         return view('publica.proyecto',compact('seccion','metadato','proyecto','proyectos'));
+    }
+
+    public function presupuesto(){
+        $seccion = 'presupuesto';
+        $metadato = Metadato::where('seccion', $seccion)->first();
+
+        return view('publica.presupuesto',compact('seccion','metadato'));
+    }
+
+    public function sendpresupuesto(Request $request)
+    {
+        /*
+        Esta función se encarga de enviar el formulario de presupuesto.
+        */
+        //Validación de los campos
+        $request->validate([
+           
+            ]);
+            $validator = Validator::make($request->all(), [
+                        'nombre'    => 'required|max:120',
+                        'empresa' => 'required|max:120',
+                        'telefono' => 'required|max:120',
+                        'localidad' => 'required|max:120',
+                        'email' => 'required|max:120',
+                        'mensaje' => 'required',
+                        'file' => 'nullable|max:3048|mimes:pdf',
+                        ]);
+            if ($validator->fails()) {
+                return redirect()->route('presupuesto')
+                ->with('error', 'Error al validar los datos ingresados. Por favor, intente de nuevo.');
+            }
+        //Validación del captcha
+        $secret = "6Ldbq5oUAAAAAMeEl8qxphxTxeoaPJl3uuDbUfHj";
+        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$request["g-recaptcha-response"]}&remoteip=".$_SERVER['REMOTE_ADDR']);
+        $response = json_decode($response, true);
+        if($response["success"] == false){ 
+            //return redirect()->route('solicitud-de-presupuesto')
+                //->with('error', 'Error al validar Captcha. Por favor, intente de nuevo.');   
+        }
+        //Unset de los elementos que no me interesan almacenar
+        unset($request['_token']);
+        unset($request['g-recaptcha-response']);
+        
+        $empresa = Empresa::find(1);
+        
+        //Mail adonde se envía el formulario
+        $mail = $empresa->email_contacto;
+        if($mail == null){   //Si el usuario no especifica (en el panel) el mail adonde quiere recibir el formulario, este no se envía.
+            return redirect()->route('presupuesto')
+                ->with('error', 'Por el momento, no recibimos mensajes por este medio. Disculpe las molestias.');
+        }
+
+        //Envio de mail
+        $mail = Mail::to($mail)->send(new PresupuestoMail($request->all()));
+        if(count( Mail::failures() ) > 0){
+            return redirect()->route('presupuesto')
+                ->with('error', 'Error al enviar el formulario. Por favor, intente de nuevo.');
+        } else {
+            return redirect()->route('presupuesto')
+                    ->with('success', 'El formulario se envió correctamente.');
+        }
     }
 }

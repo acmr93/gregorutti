@@ -39,6 +39,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-9" id="main">
+                @if ($proyecto->texto != null)
                 @foreach ($proyecto->texto as $key => $value)
                     @if($loop->iteration  % 2 == 0)
                         <div class="row mb-5 ">
@@ -60,6 +61,7 @@
                         </div>                        
                     @endif
                 @endforeach            
+                @endif           
             </div>
         </div>
     </div>
