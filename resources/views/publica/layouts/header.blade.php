@@ -1,4 +1,4 @@
-<header >
+<header ><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <nav id="navbarfirst" class="navbar navbar-light navbar-expand-md py-0">
         <div class="container">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 ">
@@ -7,9 +7,10 @@
             </div>
             <div class="mx-auto order-0 d-flex align-items-center">
                 <a class="navbar-brand order-first order-md-0 mx-4 py-1" href="{{route('home')}}" >
-                    <img class=" mx-auto d-block" src="{{asset('images/logos/header.png')}}" >
+                    <img class="img-fluid mx-auto d-none d-md-block" src="{{asset('images/logos/header.png')}}" style="width: 1500px;">
+                    <img class="mx-auto d-block d-md-none" src="{{asset('images/logos/favicon.png')}}" >
                 </a>
-                <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <br><button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
